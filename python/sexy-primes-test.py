@@ -112,15 +112,15 @@ for t in variants[variants.index(start_from):]:
     def primes(n):
       """ returns a list of primes < n """
       sieve = primes_sieve(n)
-      return [2] + [2*i+1 for i in range(1, int(n/2)) if sieve[i]]
+      return [2] + [2*i+1 for i in range(1, n//2) if sieve[i]]
     def sexy_primes_below(n):
       l = []
       sieve = primes_sieve(n+1)
-      #is_prime = lambda j: (j & 1) and sieve[int(j/2)]
-      for j in range(9, n+1):
+      #is_prime = lambda j: (j & 1) and sieve[j//2]
+      for j in range(9, n+1, 2):
         i = j-6
         #if (i & 1) and is_prime(i) and is_prime(j):
-        if (i & 1) and sieve[int(i/2)] and sieve[int(j/2)]:
+        if sieve[i//2] and sieve[j//2]:
           l.append([i, j])
       return l
 
@@ -157,11 +157,11 @@ for t in variants[variants.index(start_from):]:
     def sexy_primes_below(n):
       l = []
       sieve = primes_sieve(n+1)
-      #is_prime = lambda j: (j & 1) and sieve[int((j-2)/2)]
-      for j in range(9, n+1):
+      #is_prime = lambda j: (j & 1) and sieve[(j-2)//2]
+      for j in range(9, n+1, 2):
         i = j-6
         #if (i & 1) and is_prime(i) and is_prime(j):
-        if (i & 1) and sieve[int((i-2)/2)] and sieve[int((j-2)/2)]:
+        if sieve[(i-2)//2] and sieve[(j-2)//2]:
           l.append([i, j])
       return l
 
