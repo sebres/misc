@@ -12,6 +12,7 @@
 # Copyright (c) 2015 Serg G. Brester (sebres)
 # -------------------------------------
 
+set reset_tags 1
 set remove_email_before_date ""
 #set remove_email_before_date [clock scan "28.04.2015" -format "%d.%m.%Y"]
 set norm_message 0
@@ -61,12 +62,13 @@ array set mails {
 fconfigure stdin -encoding binary -translation lf -eofchar {} -buffersize 1024000
 fconfigure stdout -encoding binary -translation lf -eofchar {} -buffersize 1024000
 set commit 0
+set tag 0
 while 1 {
   set l [::gets stdin]
   if {$l == {} && [::eof stdin]} {
     break
   }
-  if {[regexp {^data\s+(\d+)$} $l _ n]} {
+  if {!$tag && [regexp {^data\s+(\d+)$} $l _ n]} {
     ## read blob or message :
     fconfigure stdout -translation binary
     fconfigure stdin -translation binary
@@ -95,7 +97,7 @@ while 1 {
   }
   ## recognize commit, wrap committer :
   if {[regexp {^committer\s+} $l] && [regexp {^committer\s+([^<]+)\s+\<(.+)\>\s+(.*)$} $l _ usr email rest]} {
-    set commit 1
+    set commit 1; set tag 0
     ## check confused user/email :
     if {[regexp {\S+@\S+} $usr] && ![regexp {\S+@\S+} $email]} {
       lassign [list $usr $email] email usr
@@ -112,6 +114,21 @@ while 1 {
       [regexp {^(\d+)\s+([+\-]\d{4})} $rest _ tm {}] && $tm < $remove_email_before_date
     } {
       set l "committer $usr <${usr}> $rest"
+    }
+  } elseif {!$commit && $reset_tags} {
+    if {!$tag && [regexp {^tag\s+(.+)$} $l _ ref]} {
+      set tag 1
+      set l "reset refs/tags/$ref"
+    } elseif {$tag} {
+      if {[regexp {^tagger\s} $l]} {
+        # ignore "tagger <tagger>" within mode "reset_tags" ...
+        if {[incr tag] > 2} {set tag 0}
+        continue
+      } elseif {[regexp {^data\s+0$} $l]} {
+        # ignore "data 0" within mode "reset_tags" ...
+        if {[incr tag] > 2} {set tag 0}
+        continue
+      }
     }
   }
   ::puts stdout $l
