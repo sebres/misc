@@ -11,7 +11,7 @@ import time
 max_n = '100K'
 start_from = None;
 times = 1
-variants = ('org', 'mod1', 'mod2', 'org2', 'max', 'orgm', 'siev1', 'siev2', 'osie1', 'osie2')
+variants = ('org', 'mod1', 'mod2', 'org2', 'max', 'orgm', 'gesiv', 'gesim', 'siev1', 'siev2', 'osie1', 'osie2')
 
 def usage():
   print('usage: ?pypy|python? sexy-primes-test.py ?max? ?start-from? ?times?' + 
@@ -92,6 +92,52 @@ for t in variants[variants.index(start_from):]:
       #return ((n & 1) and all(n % i for i in range(3, int(math.sqrt(n))+1, 2)))
       return ((n & 1) and all(n % i for i in range(3, int(n**0.5)+1, 2)))
 
+  elif t in ('gesiv', 'gesim') :
+    if t == 'gesiv':
+      def primes_gen():
+        """ original generator for primes via the sieve of eratosthenes """
+        D = {}
+        q = 2
+        while 1:
+          if q not in D:
+            yield q
+            D[q*q] = [q]
+          else:
+            for p in D[q]:
+              D.setdefault(p+q,[]).append(p)
+            del D[q]
+          q += 1
+    elif t == 'gesim':
+      def primes_gen():
+        """ modified generator for primes via the sieve of eratosthenes """
+        D = {}
+        yield 2
+        q = 1
+        while True:
+          q += 2
+          p = D.pop(q, 0)
+          if p:
+            x = q + p
+            while x in D: x += p
+            if x & 1:
+              D[x] = p
+            continue
+          yield q
+          x = q*q
+          if x & 1:
+            D[x] = 2*q
+    def sexy_primes_below(n):
+      l = []
+      pp = {}
+      for j in primes_gen():
+        if j > n: break
+        pp[j] = 1
+        if j >= 9:
+          i = j-6
+          if pp.pop(i, 0):
+            l.append([i, j])
+      return l
+
   elif t in ('siev1', 'siev2'):
     if t == 'siev1':
       def primes_sieve(n):
@@ -164,7 +210,6 @@ for t in variants[variants.index(start_from):]:
         if sieve[(i-2)//2] and sieve[(j-2)//2]:
           l.append([i, j])
       return l
-
   else:
     continue
 
