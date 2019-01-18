@@ -84,8 +84,10 @@ if {[info command ::db] eq ""} {
 ## ------------------------------------------
 
 set stat {marks 0 checkins 0 blobs 0 sane-rids 0 wrap-rids 0 wrap-checkins 0 wrap-blobs 0}
+set ridmap {}
 set f [open $fossil_marks_in r]
 set fo [open $fossil_marks_out w]
+set fm [open ${fossil_marks_out}-map w]
 puts "Repair fossil export-marks: [file tail $fossil_marks_in] -> [file tail $fossil_marks_out]"
 try {
 
@@ -125,6 +127,9 @@ try {
       }
       # wrap:
       ::puts $fo [format "%s%s :%s %s" $at $nrid $expid $hash]
+      # entry to ridmap:
+      dict set ridmap $rid $nrid
+      ::puts $fm "$rid $nrid"
     } else {
       dict incr stat sane-rids
       ::puts $fo $l
@@ -134,6 +139,7 @@ try {
 } finally {
   close $f
   close $fo
+  close $fm
   db close
 }
 
