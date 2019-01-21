@@ -118,7 +118,7 @@ proc rid2hash {rid} {
 }
 
 proc _update_table_rids {ldb table ufield idfield ridmap {process 0}} {
-  set sql "UPDATE $table $ufield = :nrid WHERE $idfield = :rid"
+  set sql "UPDATE $table SET $ufield = :nrid WHERE $idfield = :rid"
   puts "\n$table: swap [dict size $ridmap] ${ufield}(s) ..."
   puts "   $sql"
   foreach {rid nrid} $ridmap {
@@ -142,7 +142,7 @@ proc _update_table_multrids {ldb table idfield mulridmap {process 0}} {
       lappend upd "$fld = :r($fld)"
       lappend act "$fld = $r($fld)"
     }
-    set nsql "UPDATE $table [join $upd ", "] WHERE $idfield = :id"
+    set nsql "UPDATE $table SET [join $upd ", "] WHERE $idfield = :id"
     if {$sql ne $nsql} {
       set sql $nsql
       puts "   $sql"
@@ -354,6 +354,10 @@ if {[ldb exists "SELECT name FROM sqlite_master WHERE type ='table' AND name = '
 
 puts "\n[string repeat = 80]"
 
+if {$process} {
+  ldb eval "BEGIN"
+}
+
 # table stash:
 if {[dict size $stashvidmap]} {
   _update_table_rids ldb stash vid vid $stashvidmap $process
@@ -366,6 +370,9 @@ if {[dict size $sfileridmap]} {
   set sfileridmap {}
 }
 
+if {$process} {
+  ldb eval "COMMIT"
+}
 if 0 {;#
   # table vvar:
   if {[dict size $vvarridmap]} {
@@ -381,9 +388,16 @@ if 0 {;#
 } else {
   if {[dict size $vvarridmap]} {
     set nrid [dict get $vvarridmap checkout]
+    set uuid [rid2hash $nrid]
     puts "\nvvar/vfile: swap checkout to $nrid ..."
     puts "   cd [file nativename [file dirname $fossil_local_file]]"
-    puts "   fossil checkout -f --keep [rid2hash $nrid]"
+    puts "   fossil checkout -f --keep $uuid"
+    if {$process} {
+      fdb close
+      ldb close
+      cd [file dirname $fossil_local_file]
+      exec fossil checkout -f --keep $uuid
+    }
   }
 }
 
