@@ -46,11 +46,12 @@ if {[info command ::fdb] eq ""} {
   # open fast mode (RO)
   sqlite3 ::fdb file:[file normalize $fossil_clone_file]?mode=ro&cache=shared&immutable=1 -uri 1 -readonly 1
 }
-if {[info command ::ldb] eq ""} {
-  if {$process} {
-    # open fast mode (RW)
-    sqlite3 ::ldb file:[file normalize $fossil_local_file]?mode=rw&cache=shared -uri 1
-  } else {
+if {$process} {
+  catch {ldb close}
+  # open fast mode (RW)
+  sqlite3 ::ldb file:[file normalize $fossil_local_file]?mode=rw&cache=shared -uri 1
+} else {
+  if {[info command ::ldb] eq ""} {
     # open fast mode (RO)
     sqlite3 ::ldb file:[file normalize $fossil_local_file]?mode=ro&cache=shared&immutable=1 -uri 1 -readonly 1
   }
@@ -258,10 +259,26 @@ set allbr {}
 set allfids {}
 if {[ldb exists "SELECT name FROM sqlite_master WHERE type ='table' AND name = 'vfile'"]} {
   puts "vfile ..."
+  # first check it may be already restored once (already applied export-marks map):
   unset -nocomplain r
+  ldb eval "select mrid, pathname from vfile order by mrid desc limit 20" r {
+    set fidok [fid_has_files $r(mrid) $r(mrid)]
+    if {![lindex $fidok 0]} {
+      break
+    }
+  }
+  # if latest files are ok - reset map:
+  if {[lindex $fidok 0]} {
+    puts "[string repeat = 80]"
+    puts "= WARNING: it looks like repeated run (seems to be already repaired) - reset ridmap to avoid rid's confusion..."
+    puts "[string repeat = 80]"
+    set ridmap {}
+  }
+  # do analyse:
   foreach br [allbranches_of_vfiles] { dict set allbr $br 1 }
   puts "[dict size $allbr] branch(es) found: [cutstr [dict keys $allbr] 150]"
   set unswap [set unmod [set mod 0]]
+  unset -nocomplain r
   ldb eval "select id, vid, rid, mrid, mtime, datetime(mtime, 'unixepoch') lftimestr, pathname, origname 
   from vfile order by mrid asc" r {
     set val {}
