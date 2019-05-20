@@ -1,0 +1,146 @@
+h1     1 collisions after      74 hashes by 76DB6DB1 for aaaaaaaaba and aaaaaaaaai
+h1    10 collisions after      83 hashes by 76DB6DBA for aaaaaaaabj and aaaaaaaaar
+h1   100 collisions after     203 hashes by 76DB6DC2 for aaaaaaaadb and aaaaaaaacj
+h1  1000 collisions after    1255 hashes by 76DB6E23 for aaaaaaaatC and aaaaaaaasK
+
+h2     1 collisions after      74 hashes by 180E6071 for aaaaaaaaba and aaaaaaaaak
+h2    10 collisions after      83 hashes by 180E607A for aaaaaaaabj and aaaaaaaaat
+h2   100 collisions after     207 hashes by 180E608A for aaaaaaaadf and aaaaaaaacp
+h2  1000 collisions after    1294 hashes by 180E6133 for aaaaaaaaue and aaaaaaaato
+
+h3     1 collisions after      81 hashes by E492491F for aaaaaaaabh and aaaaaaaaap
+h3    10 collisions after     109 hashes by E4926800 for aaaaaaaabI and aaaaaaaaaQ
+h3   100 collisions after     317 hashes by E4924028 for aaaaaaaaeY and aaaaaaaaci
+h3  1000 collisions after    2413 hashes by E4933148 for aaaaaaaaKI and aaaaaaaaIY
+
+============================================================
+
+h1     1 collisions after    1022 hashes by 000426F8 for 8Dmjh and 6UhX8
+h1    10 collisions after    2577 hashes by 0003F8D0 for 1l3yH and 1dvc8
+h1   100 collisions after    7779 hashes by 00072990 for iASMh and j9THP
+h1  1000 collisions after   23910 hashes by 0007DC56 for ofvNf and sFsiN
+
+h2     1 collisions after     766 hashes by 000C1070 for DeZ5n and Dde12
+h2    10 collisions after    3260 hashes by 000EA9DD for VXvlm and XDzDm
+h2   100 collisions after   11674 hashes by 000D2A30 for KfdFD and IyivX
+h2  1000 collisions after   37170 hashes by 0010074F for aEjIu and aID6k
+
+h3     1 collisions after    4084 hashes by 05E9F5FA for URfER and UX86J
+h3    10 collisions after   12518 hashes by 06EFFF0A for awRCr and bnZBz
+h3   100 collisions after   41148 hashes by 049D3B9D for DctiU and Ec5aU
+h3  1000 collisions after  132363 hashes by 0345ABD6 for 9fxrF and 9grbF
+
+============================================================
+
+h1     1 collisions after   13843 hashes by 080EB27D for 2dp_X9yu and 4TqYAy9u
+h1    10 collisions after   48915 hashes by 10B5F0F4 for zRRAarFD and zU3xhuil
+h1   100 collisions after  184243 hashes by 0FB5EDDF for rU5mCPu7 and myUjXo7g
+h1  1000 collisions after  562546 hashes by 0A483C49 for GJuOZURy and CoHuo14i
+
+h2     1 collisions after   29319 hashes by 4935495B for rR1zeEd7 and qVnsDeL_
+h2    10 collisions after  104101 hashes by 32C6D8E8 for O5Ng84uV and O80fB7XL
+h2   100 collisions after  388600 hashes by 4D40E692 for uvK3QCrz and yP4PXfG4
+h2  1000 collisions after 1205561 hashes by 3789FA54 for UHVoCv68 and W4YR8ywj
+
+h3     1 collisions after  111320 hashes by 6DC8D47A for dwwDAP_u and Gop8EaZa
+h3    10 collisions after  300633 hashes by 2EF5764D for ln41QL9y and Nvtu1wbu
+h3   100 collisions after  757160 hashes by DF1B3FE7 for 15PHUIN1 and Iz3QYqKG
+h3  1000 collisions after 2465920 hashes by 7F89CE81 for AYnS7WP8 and Ms8Lnf89
+
+============================================================
+
+
+29672 words:
+
+h1     1 collisions after      15 hashes by 00000DF8 for 110 and 108
+h1    10 collisions after      56 hashes by 00000E19 for 151 and 149
+h1   100 collisions after    7803 hashes by B3BD1E45 for Uncomfortable and Discomfortable
+h1   951 collisions after   29331 hashes
+
+
+h2     1 collisions after     762 hashes by 00001DFE for Bal and Alb
+h2    10 collisions after    1771 hashes by 7846B757 for Contending and Contemning
+h2   100 collisions after   11619 hashes by 0010EEBB for clime and busky
+h2   362 collisions after   29331 hashes
+
+
+h3     1 collisions after      15 hashes by 000DF5F8 for 110 and 108
+h3    10 collisions after    2452 hashes by 04BF1E1B for Drunk and Drums
+h3   100 collisions after   16283 hashes by 00D55A40 for gash and fish
+h3   187 collisions after   29331 hashes
+
+
+============================================================
+
+h1     1 collisions after     416 hashes by 000511DB for Aries and Argus
+h1    10 collisions after    2488 hashes by 00054A80 for Fetch and Dutch
+h1   100 collisions after    9783 hashes by E56865B4 for circumstantial and Circumstantial
+h1   588 collisions after   25449 hashes
+
+
+h2     1 collisions after    1170 hashes by 000BF4A5 for Ceres and Bores
+h2    10 collisions after    2437 hashes by 04D26E77 for Falling and Dulling
+h2   100 collisions after   18305 hashes by 0012C3D5 for pasty and olive
+h2   142 collisions after   25449 hashes
+
+
+h3     1 collisions after    2083 hashes by 04BF1E1B for Drunk and Drums
+h3    10 collisions after    8763 hashes by 370EA48C for bonded and bolted
+h3    67 collisions after   25449 hashes
+
+
+============================================================
+
+h1     1 collisions after    1025 hashes by 12D10E9D for Faulconbridge and Falconbridge
+h1    10 collisions after    2710 hashes by 795E6424 for accountant and Accountant
+h1   100 collisions after    4397 hashes by 979FD9DB for courageous and Courageous
+h1   391 collisions after   11098 hashes
+
+
+h2     1 collisions after     566 hashes by 77819046 for Confounded and Compounded
+h2    10 collisions after    4229 hashes by EB9FF757 for contending and contemning
+h2    14 collisions after   11098 hashes
+
+
+h3     1 collisions after    6610 hashes by 14D0E08B for infection and induction
+h3     3 collisions after   11098 hashes
+
+
+============================================================
+
+23902 words in lowercase:
+
+h1     1 collisions after      42 hashes by 0006F29A for abler and abjur
+h1    10 collisions after    1881 hashes by 000713C3 for black and blabs
+h1   100 collisions after    8613 hashes by 000760DB for hames and frees
+h1   288 collisions after   20865 hashes
+
+
+h2     1 collisions after    1369 hashes by 0010A031 for barks and alias
+h2    10 collisions after    2920 hashes by 0010DBDC for chain and brain
+h2   100 collisions after   14601 hashes by 00BEA9C5 for rarely and purely
+h2   143 collisions after   20865 hashes
+
+
+h3     1 collisions after     393 hashes by 3602773D for affirm and advise
+h3    10 collisions after    2575 hashes by 37691F59 for cality and bility
+h3    73 collisions after   20865 hashes
+
+
+============================================================
+
+h1     1 collisions after    2212 hashes by 0E4C1617 for debating and bubbling
+h1    10 collisions after    4445 hashes by B63D5045 for inconsiderate and considerate
+h1    80 collisions after    9565 hashes
+
+
+h2     1 collisions after    1305 hashes by 41E67946 for chiefest and briefest
+h2    10 collisions after    4548 hashes by BF146B51 for infortunate and importunate
+h2    12 collisions after    9565 hashes
+
+
+h3     1 collisions after    4521 hashes by 14D0E08B for infection and induction
+h3     3 collisions after    9565 hashes
+
+
+============================================================
