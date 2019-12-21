@@ -4,6 +4,10 @@ import sys
 def _opt(i, dflt=None):
   return int(sys.argv[i]) if len(sys.argv) > i else dflt
 
+if len(sys.argv) <= 1:
+  print("usage: %s K k N ?TM?" % sys.argv[0])
+  sys.exit(0)
+
 K = _opt(1);  # K cards in deck
 k = _opt(2);  # k cards we will take from the deck
 N = _opt(3);  # N variants of different card types (we can "hash" at all)
