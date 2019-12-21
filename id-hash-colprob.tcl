@@ -1,7 +1,11 @@
 #!/usr/bin/env tclsh
 
 if {![llength $argv]} {
-  puts "usage: $argv0 K k N ?TM?"
+  puts "usage: $argv0 K k N ?TM?
+  # K  - cards in deck
+  # k  - cards we will take from the deck
+  # N  - variants of different card types (we can \"hash\" at all)
+  # TM - time to run estimation (iterate)"
   return
 }
 
@@ -15,7 +19,7 @@ if {$K % $N} {
 }
 
 set n [expr {$K / $N}]
-puts "k = $k cards from K = $K max, by sieve N = 1..$N, types repeated n = $n times:"
+puts "k = $k cards from K = $K max, by sieve N = 1..$N, repeated n = $n times:"
 
 # calculate (recursive probability tree):
 

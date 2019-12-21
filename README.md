@@ -65,21 +65,21 @@ For people that don't believe the formulas, I wrote a program estimating the pro
 Here are few examples:
 ```bash
 $ id-hash-colprob.tcl 32 3 8 1000
-k = 3 cards from K = 32 max, by sieve N = 1..8, types repeated n = 4 times:
+k = 3 cards from K = 32 max, by sieve N = 1..8, repeated n = 4 times:
 Calc-P(collision)=0.2774193548387097
 Estm-P(collision)=0.27630985264501645
 Results: iter 90869 no 65761 yes 25108
 11.0050 µs/# 90869 # 90868.0 #/sec 1000.011 net-ms
 
 $ id-hash-colprob.tcl 64 3 8 1000
-k = 3 cards from K = 64 max, by sieve N = 1..8, types repeated n = 8 times:
+k = 3 cards from K = 64 max, by sieve N = 1..8, repeated n = 8 times:
 Calc-P(collision)=0.31182795698924726
 Estm-P(collision)=0.3100930396890826
 Results: iter 76419 no 52722 yes 23697
 13.0858 µs/# 76419 # 76418.8 #/sec 1000.003 net-ms
 
 $ id-hash-colprob.tcl 128 3 8 1000
-k = 3 cards from K = 128 max, by sieve N = 1..8, types repeated n = 16 times:
+k = 3 cards from K = 128 max, by sieve N = 1..8, repeated n = 16 times:
 Calc-P(collision)=0.32808398950131235
 Estm-P(collision)=0.32677005383807944
 Results: iter 59066 no 39765 yes 19301
@@ -88,16 +88,17 @@ Results: iter 59066 no 39765 yes 19301
 # ---
 
 $ id-hash-colprob.tcl 36 10 9 1000
-k = 10 cards from K = 36 max, by sieve N = 1..9, types repeated n = 4 times:
+k = 10 cards from K = 36 max, by sieve N = 1..9, repeated n = 4 times:
 Calc-P(collision)=1.0
 Estm-P(collision)=1.0
 Results: iter 63674 no 0 yes 63674
 15.7050 µs/# 63674 # 63674.0 #/sec 1000.000 net-ms
 
 $ id-hash-colprob.tcl 32 4 8 1000
-k = 4 cards from K = 32 max, by sieve N = 1..8, types repeated n = 4 times:
+k = 4 cards from K = 32 max, by sieve N = 1..8, repeated n = 4 times:
 Calc-P(collision)=0.5016685205784205
 Estm-P(collision)=0.5044833557821821
 Results: iter 77955 no 38628 yes 39327
 12.8281 µs/# 77955 # 77954.1 #/sec 1000.012 net-ms
+
 ```

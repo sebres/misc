@@ -5,7 +5,11 @@ def _opt(i, dflt=None):
   return int(sys.argv[i]) if len(sys.argv) > i else dflt
 
 if len(sys.argv) <= 1:
-  print("usage: %s K k N ?TM?" % sys.argv[0])
+  print("""usage: %s K k N ?TM?
+  # K  - cards in deck
+  # k  - cards we will take from the deck
+  # N  - variants of different card types (we can \"hash\" at all)
+  # TM - time to run estimation (iterate)""" % sys.argv[0])
   sys.exit(0)
 
 K = _opt(1);  # K cards in deck
@@ -18,7 +22,7 @@ if K % N:
     K, N, K, N))
 
 n = K / N
-print("k = %s cards from K = %s max, by sieve N = 1..%d, types repeated n = %d times:" % (k, K, N, n))
+print("k = %s cards from K = %s max, by sieve N = 1..%d, repeated n = %d times:" % (k, K, N, n))
 
 # calculate (recursive probability tree):
 
