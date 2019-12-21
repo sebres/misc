@@ -4,7 +4,7 @@ import sys
 def _opt(i, dflt=None):
   return int(sys.argv[i]) if len(sys.argv) > i else dflt
 
-if len(sys.argv) <= 1:
+if len(sys.argv) <= 3:
   print("""usage: %s K k N ?TM?
   # K  - cards in deck
   # k  - cards we will take from the deck
@@ -17,6 +17,9 @@ k = _opt(2);  # k cards we will take from the deck
 N = _opt(3);  # N variants of different card types (we can "hash" at all)
 TM = _opt(4); # time to run estimation (iterate)
 
+if k > K or N > K:
+  print("k and N should be less or equal K, but %s > %s or %s > %s" % (k, K, N, K))
+  sys.exit(1)
 if K % N:
   print("Warning: n is not decimal, we have rest by %s / %s (%s %% %s != 0), estimated and calculated probabilities may vary" % (
     K, N, K, N))
@@ -28,6 +31,7 @@ print("k = %s cards from K = %s max, by sieve N = 1..%d, repeated n = %d times:"
 
 def calcp(d, k):
   global K, n
+  if k <= 1: return 0.0
   v = float(d*n-d)/(K-d)
   if k > 2:
     v += float(K-n*d)/(K-d) * calcp(d+1, k-1)

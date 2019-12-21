@@ -1,6 +1,6 @@
 #!/usr/bin/env tclsh
 
-if {![llength $argv]} {
+if {[llength $argv] < 3} {
   puts "usage: $argv0 K k N ?TM?
   # K  - cards in deck
   # k  - cards we will take from the deck
@@ -14,6 +14,10 @@ set k [lindex $argv 1]   ; # k cards we will take from the deck
 set N [lindex $argv 2]   ; # N variants of different card types (we can "hash" at all)
 set TM [lindex $argv 3]  ; # time to run estimation (iterate)
 
+if {$k > $K || $N > $K} {
+  puts "k and N should be less or equal K, but $k > $K or $N > $K"
+  return
+}
 if {$K % $N} {
   puts "Warning: n is not decimal, we have rest by $K / $N ($K % $N != 0), estimated and calculated probabilities may vary"
 }
@@ -30,6 +34,7 @@ puts "k = $k cards from K = $K max, by sieve N = 1..$N, repeated n = $n times:"
 # }]
 proc calcp {d k} {
   upvar K K n n
+  if {$k <= 1} {return 0.0}
   set v [expr {double($d*$n-$d)/($K-$d)}]
   if {$k > 2} {
     set v [expr {$v + (double($K-$n*$d)/($K-$d) * [calcp [expr {$d+1}] [expr {$k-1}]])}]
