@@ -29,14 +29,15 @@ print("k = %s cards from K = %s max, by sieve N = 1..%d, repeated n = %d times:"
 
 # calculate (recursive probability tree):
 
-def calcp(d, k):
-  global K, n
-  if k <= 1: return 0.0
-  v = float(d*n-d)/(K-d)
-  if k > 2:
-    v += float(K-n*d)/(K-d) * calcp(d+1, k-1)
+def calcp(K, n, k):
+  # unfold recursion to cycle (multiply backwards starting from last iteration),
+  # calculate iterative considering previous value (and both chances on every iteration):
+  v = 0.0
+  while k:
+    k -= 1
+    v = float(k*n-k)/(K-k) + float(K-n*k)/(K-k) * v
   return v
-print("Calc-P(collision)=%s" % calcp(1, k))
+print("Calc-P(collision)=%s" % calcp(K, n, k))
 
 # estimation (simulate playing):
 if TM:

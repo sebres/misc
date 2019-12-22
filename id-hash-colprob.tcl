@@ -32,16 +32,17 @@ puts "k = $k cards from K = $K max, by sieve N = 1..$N, repeated n = $n times:"
 # puts Calc-P(collision)=[expr {
 #   (1*$n-1.0)/($K-1) + ($K-$n*1.0)/($K-1) * ((2*$n-2.0)/($K-2) + ($K-$n*2.0)/($K-2) * (3*$n-3.0)/($K-3))
 # }]
-proc calcp {d k} {
-  upvar K K n n
-  if {$k <= 1} {return 0.0}
-  set v [expr {double($d*$n-$d)/($K-$d)}]
-  if {$k > 2} {
-    set v [expr {$v + (double($K-$n*$d)/($K-$d) * [calcp [expr {$d+1}] [expr {$k-1}]])}]
+proc calcp {K n k} {
+  # unfold recursion to cycle (multiply backwards starting from last iteration),
+  # calculate iterative considering previous value (and both chances on every iteration):
+  set v 0.0
+  while {$k} {
+    incr k -1
+    set v [expr {double($k*$n-$k)/($K-$k) + double($K-$n*$k)/($K-$k) * $v}]
   }
   set v
 }
-puts Calc-P(collision)=[calcp 1 $k]
+puts Calc-P(collision)=[calcp $K $n $k]
 
 # estimation (simulate playing):
 if {$TM ne {}} {
